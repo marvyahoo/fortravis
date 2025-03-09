@@ -22,8 +22,8 @@ deploy:
   region: "us-east-1"
   access_key_id: "$AWS_ACCESS_KEY_ID"
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-  app: "personal-app"
-  env: "django-env"
-  bucket_name: "elasticbeanstalk-us-east-1-982534388341"
+  app: "mr-swe1-app-clean"
+  env: "mr-swe1-app-clean-env"
+  bucket_name: "elasticbeanstalk-us-east-1-577638393804"
   on:
     branch: main  # Deploy only from the main branch
