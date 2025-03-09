@@ -1,29 +1,26 @@
 dist: focal
-
 language: python
-
 python:
-  - "3.12"
-
-
+- '3.12'
 install:
-  - pip install -r requirements.txt  # Install all dependencies from requirements.txt
-
+- pip install -r requirements.txt
 script:
-  - black --check .  # Validate formatting
-  - flake8 --exclude=eb-virt  # Lint code
-  - coverage run --source=polls manage.py test polls.testsuite
-
+- black --check .
+- flake8 --exclude=eb-virt
+- coverage run --source=polls manage.py test polls.testsuite
 after_success:
-  - COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN coveralls --verbose
-
+- COVERALLS_REPO_TOKEN=$COVERALLS_REPO_TOKEN coveralls --verbose
 deploy:
   provider: elasticbeanstalk
-  region: "us-east-1"
+  region: us-east-1
   access_key_id: "$AWS_ACCESS_KEY_ID"
   secret_access_key: "$AWS_SECRET_ACCESS_KEY"
-  app: "mr-swe1-app-clean"
-  env: "mr-swe1-app-clean-env"
-  bucket_name: "elasticbeanstalk-us-east-1-577638393804"
+  app: mr-swe1-app-clean
+  env: mr-swe1-app-clean-env
+  bucket_name: elasticbeanstalk-us-east-1-577638393804
   on:
-    branch: main  # Deploy only from the main branch
+    branch: main
+env:
+  global:
+  - secure: Z67Pb+JEG+wphuxOqVcLrLRqx4P25IcjuHAjfd1qXMKWnFB3o46bto8jPyWQ6rfX6Rprmh8EVxQJog7r2qr/D4mZAkN9OyKgnRK8xF51YqYSVFDjY1xnMc3U/kxqOEf+Ck49aD79ySRWHhncuigGOVLIFIhK9a6WU675s6nXnRR+/t9rPcPVFC0ErPjo7z1jW8LJl4HohMra+nZjaC/maZkkm8l7hK7g+hIuUxIfPVcLestWI+CmBSU54SjGUhxdC98A460Ixuuz981tktEvj/bS1/Mw2nCIl2FVOXMvjH9Pxv7xemigA4lXCN48nq5JALShI7q8U20AsPvYi8k5vE7IDwy0cdNibsAEo4TD0ws7FrpGdktTP0qOyDLelonLZe4yHgMhzz48raU1vZMNdrC+INR5YBv2CYkn54Y6n0zidp554tvsGkfDce/dU6eVopOZdEdZbp5RuJuiN/ChddIDJhfEdjdwyvynaAz1u9C5JaB0vAMu3cC9wrygx2GEZb+BmvDFFM7RT8LPi4POTj/7YHFIjIrGUE9OXQgd2ZZEnbtw5M2ImPvIujh6Errn3JU9e+JpbWD8Tg6ae/BIai7fFNQpEo/wYnCdkuPI3ZIUJJHmLJX1rvOC6SFSQhvg3nljELkoc2RMu4QBwC6MccjZBHJFhTkNGGZgzEljZL4=
+  - secure: y/DKwviEbTKyzyG3r7PFKfBtqqjfKM76bTFe5/+nWFXSX3p2bUtdZD1oBt1OhY0kDsSHSP5Xsh3FvZnd6KoU34gbWfjp+0b5kTou+Vt5RqQUaFAl2DsW/afewr4Gb+6yOahIXuuOu1E3bGzDgNzxmtvx9fD9naFfLx/YgmZQIsGK3TuGhpZ6KQ4LZ91qDj98ntLecg85YwyOnTj13VmYjFr+5cQaMupyGH7tTrt9VbP3C2VpyImLrYWT7PGCMi/RSxJV/Ayu71fPkYW0ZsrPKo1uL4DbKblTr++6RBMl5axT09EupRH9I414gRwEvqrU0JjNoIJHxqKN2XZo0XL7uOxjv94pfEBqw2lHAuAUuYWqSgE6G9XEIMYTjjGjTaKvGw7x1etgT5ptXN7rIW+o2UgeYHrwWFa0fnek4N+4J3Zb8Ia+KvS0BnXNRwERkJfy1gk+eKq/5prTZmNefY4UYRHpunHOk/fyhzapeMeSTcn5IVD4d8cuNb8qHobbcI6g6nyQQk+Cg5X3BSi7CuLsGvdDz2HSWBqauFvfcmAfFqAAM+3YAZwvwi/7uZOrFaAT/oD0GhM3S7TSkbmVvP7cO2oXvvqNLP+94mBPzkC5mNARIwgKADPrlRAPfFrFT6S++/7ApLqOzCTnDdU682shUt5CRx00dijQuiTyoMdsxZo=
