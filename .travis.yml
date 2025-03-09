@@ -11,7 +11,7 @@ install:
 
 script:
   - black --check .  # Validate formatting
-  - flake8  # Lint code
+  - flake8 --exclude=eb-virt  # Lint code
   - coverage run --source=polls manage.py test polls.testsuite
 
 after_success:
